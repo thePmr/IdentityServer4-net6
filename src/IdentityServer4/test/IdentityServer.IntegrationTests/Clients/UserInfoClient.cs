@@ -7,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using FluentAssertions;
 using IdentityModel;
@@ -194,7 +196,9 @@ namespace IdentityServer.IntegrationTests.Clients
                 Token = response.AccessToken
             });
 
-            roles = ((JArray)userInfo.Json["role"]).Select(x => x.ToString()).ToArray();
+            JObject o = JObject.Parse(userInfo.Json.GetRawText());
+            var userInfoAsDict = o.ToObject<Dictionary<string, object>>();
+            roles = ((JArray)userInfoAsDict["role"]).Select(x => x.ToString()).ToArray();
             roles.Length.Should().Be(2);
             roles.Should().Contain("Geek");
             roles.Should().Contain("Developer");
