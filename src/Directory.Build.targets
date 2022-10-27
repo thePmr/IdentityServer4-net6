@@ -25,7 +25,7 @@
     <PackageReference Update="xunit.runner.visualstudio" Version="2.4.1" PrivateAssets="All" />
 
     <!--our stuff -->
-    <PackageReference Update="IdentityModel" Version="6.0.0" />
+    <PackageReference Update="IdentityModel" Version="6.1.0-preview.1" />
 
     <PackageReference Update="IdentityServer4" Version="$(IdentityServerVersion)" />
     <PackageReference Update="IdentityServer4.AspNetIdentity" Version="$(IdentityServerVersion)" />
