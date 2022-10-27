@@ -13,6 +13,7 @@ using System;
 using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using static IdentityServer4.IdentityServerConstants;
 
 namespace IdentityServer4.Services
@@ -134,6 +135,8 @@ namespace IdentityServer4.Services
         protected virtual Task<string> CreateJwtAsync(JwtSecurityToken jwt)
         {
             var handler = new JwtSecurityTokenHandler();
+            // JsonExtensions.Serializer = JsonConvert.SerializeObject;
+            // JsonExtensions.Deserializer = JsonConvert.DeserializeObject;
             return Task.FromResult(handler.WriteToken(jwt));
         }
     }
